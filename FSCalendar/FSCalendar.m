@@ -165,6 +165,7 @@ typedef NS_ENUM(NSUInteger, FSCalendarOrientation) {
     _maximumDate = [self.formatter dateFromString:@"2099-12-31"];
     
     _headerHeight     = FSCalendarAutomaticDimension;
+    _weekdaysInsets   = UIEdgeInsetsZero;
     _weekdayHeight    = FSCalendarAutomaticDimension;
     _rowHeight        = FSCalendarStandardRowHeight*MAX(1, FSCalendarDeviceIsIPad*1.5);
     
@@ -301,7 +302,7 @@ typedef NS_ENUM(NSUInteger, FSCalendarOrientation) {
         }
         
         self.calendarHeaderView.frame = CGRectMake(0, 0, self.fs_width, headerHeight);
-        self.calendarWeekdayView.frame = CGRectMake(0, self.calendarHeaderView.fs_bottom, self.contentView.fs_width, weekdayHeight);
+        self.calendarWeekdayView.frame = CGRectMake(self.weekdaysInsets.left, self.calendarHeaderView.fs_bottom + self.weekdaysInsets.top, self.contentView.fs_width - self.weekdaysInsets.left - self.weekdaysInsets.right, weekdayHeight);
 
         _deliver.frame = CGRectMake(self.calendarHeaderView.fs_left, self.calendarHeaderView.fs_top, self.calendarHeaderView.fs_width, headerHeight+weekdayHeight);
         _deliver.hidden = self.calendarHeaderView.hidden;
@@ -309,13 +310,13 @@ typedef NS_ENUM(NSUInteger, FSCalendarOrientation) {
             switch (self.transitionCoordinator.representingScope) {
                 case FSCalendarScopeMonth: {
                     CGFloat contentHeight = rowHeight*6 + padding*2;
-                    _daysContainer.frame = CGRectMake(0, headerHeight+weekdayHeight, self.fs_width, contentHeight);
+                    _daysContainer.frame = CGRectMake(self.weekdaysInsets.left, self.calendarWeekdayView.frame.origin.y + self.calendarWeekdayView.frame.size.height, self.fs_width - self.weekdaysInsets.left - self.weekdaysInsets.right, contentHeight);
                     _collectionView.frame = CGRectMake(0, 0, _daysContainer.fs_width, contentHeight);
                     break;
                 }
                 case FSCalendarScopeWeek: {
                     CGFloat contentHeight = rowHeight + padding*2;
-                    _daysContainer.frame = CGRectMake(0, headerHeight+weekdayHeight, self.fs_width, contentHeight);
+                    _daysContainer.frame = CGRectMake(self.weekdaysInsets.left, headerHeight+weekdayHeight, self.fs_width - self.weekdaysInsets.left - self.weekdaysInsets.right, contentHeight);
                     _collectionView.frame = CGRectMake(0, 0, _daysContainer.fs_width, contentHeight);
                     break;
                 }

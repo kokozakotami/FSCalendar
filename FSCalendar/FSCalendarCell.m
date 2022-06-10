@@ -20,6 +20,7 @@
 @property (readonly, nonatomic) UIColor *colorForCellBorder;
 @property (readonly, nonatomic) NSArray<UIColor *> *colorsForEvents;
 @property (readonly, nonatomic) CGFloat borderRadius;
+@property (readonly, nonatomic) UIFont *fontForTitleLabel;
 
 @end
 
@@ -195,7 +196,7 @@
     if (![textColor isEqual:_titleLabel.textColor]) {
         _titleLabel.textColor = textColor;
     }
-    UIFont *titleFont = self.calendar.appearance.titleFont;
+    UIFont *titleFont = self.fontForTitleLabel;
     if (![titleFont isEqual:_titleLabel.font]) {
         _titleLabel.font = titleFont;
     }
@@ -317,6 +318,17 @@
 - (CGFloat)borderRadius
 {
     return _preferredBorderRadius >= 0 ? _preferredBorderRadius : _appearance.borderRadius;
+}
+
+- (UIFont *)fontForTitleLabel
+{
+    if (self.isSelected) {
+        return  self.calendar.appearance.selectedTitleFont;
+    }
+    if (self.dateIsToday) {
+        return  self.calendar.appearance.titleTodayFont;
+    }
+    return  self.calendar.appearance.titleFont;
 }
 
 #define OFFSET_PROPERTY(NAME,CAPITAL,ALTERNATIVE) \

@@ -50,6 +50,16 @@ typedef NS_OPTIONS(NSUInteger, FSCalendarCaseOptions) {
 @property (strong, nonatomic) UIFont   *titleFont;
 
 /**
+ * The font of the today text.
+ */
+@property (strong, nonatomic) UIFont   *titleTodayFont;
+
+/**
+ * The font of the selected day text.
+ */
+@property (strong, nonatomic) UIFont   *selectedTitleFont;
+
+/**
  * The font of the subtitle text.
  */
 @property (strong, nonatomic) UIFont   *subtitleFont;

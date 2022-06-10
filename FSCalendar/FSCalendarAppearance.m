@@ -31,6 +31,8 @@
     if (self) {
         
         _titleFont = [UIFont systemFontOfSize:FSCalendarStandardTitleTextSize];
+        _titleTodayFont = [UIFont systemFontOfSize:FSCalendarStandardTitleTextSize];
+        _selectedTitleFont = [UIFont systemFontOfSize:FSCalendarStandardTitleTextSize];
         _subtitleFont = [UIFont systemFontOfSize:FSCalendarStandardSubtitleTextSize];
         _weekdayFont = [UIFont systemFontOfSize:FSCalendarStandardWeekdayTextSize];
         _headerTitleFont = [UIFont systemFontOfSize:FSCalendarStandardHeaderTextSize];
