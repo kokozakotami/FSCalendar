@@ -65,7 +65,7 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    self.collectionView.frame = CGRectMake(0, self.fs_height*0.1, self.fs_width, self.fs_height*0.9);
+    self.collectionView.frame = CGRectMake(0, 0, self.fs_width, self.fs_height);
 }
 
 - (void)dealloc
