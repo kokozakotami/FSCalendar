@@ -44,6 +44,8 @@ typedef NS_OPTIONS(NSUInteger, FSCalendarCaseOptions) {
  */
 @interface FSCalendarAppearance : NSObject
 
+@property (assign, nonatomic) CGFloat  bottomSeparatorOffsetX;
+
 /**
  * The font of the day text.
  */
@@ -118,6 +120,11 @@ typedef NS_OPTIONS(NSUInteger, FSCalendarCaseOptions) {
  * The color of month header text.
  */
 @property (strong, nonatomic) UIColor  *headerTitleColor;
+
+/**
+ * The color oh month header separator
+ */
+@property (strong, nonatomic) UIColor  *footerSeparatorColor;
 
 /**
  * The color oh month header separator

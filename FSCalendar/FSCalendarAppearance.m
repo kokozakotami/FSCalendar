@@ -39,6 +39,7 @@
         
         _headerTitleColor = FSCalendarStandardTitleTextColor;
         _headerSeparatorColor = FSCalendarStandardLineColor;
+        _footerSeparatorColor = FSCalendarStandardLineColor;
         _headerDateFormat = @"MMMM yyyy";
         _headerMinimumDissolvedAlpha = 0.2;
         _headerTitleOffset = CGPointZero;
@@ -82,6 +83,14 @@
         
     }
     return self;
+}
+
+- (void)setBottomSeparatorOffsetX:(CGFloat)bottomSeparatorOffsetX
+{
+    if (_bottomSeparatorOffsetX != bottomSeparatorOffsetX) {
+        _bottomSeparatorOffsetX = bottomSeparatorOffsetX;
+        [self.calendar configureAppearance];
+    }
 }
 
 - (void)setTitleFont:(UIFont *)titleFont
@@ -413,6 +422,15 @@
         [self.calendar configureAppearance];
     }
 }
+
+- (void)setFooterSeparatorColor:(UIColor *)footerSeparatorColor
+{
+    if (![_footerSeparatorColor isEqual:footerSeparatorColor]) {
+        _footerSeparatorColor = footerSeparatorColor;
+        [self.calendar configureAppearance];
+    }
+}
+
 
 - (void)setHeaderSeparatorColor:(UIColor *)headerSeparatorColor
 {

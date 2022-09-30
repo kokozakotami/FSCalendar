@@ -13,6 +13,7 @@ module FSCalendar {
     header "FSCalendarHeaderView.h"
     header "FSCalendarSeparatorDecorationView.h"
     header "FSCalendarStickyHeader.h"
+    header "FSCalendarSeparatorFooter.h"
     header "FSCalendarTransitionCoordinator.h"
     header "FSCalendarWeekdayView.h"
 

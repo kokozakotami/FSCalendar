@@ -10,6 +10,7 @@
 #import "FSCalendarHeaderView.h"
 #import "FSCalendarWeekdayView.h"
 #import "FSCalendarStickyHeader.h"
+#import "FSCalendarSeparatorFooter.h"
 #import "FSCalendarCollectionViewLayout.h"
 
 #import "FSCalendarExtensions.h"
@@ -218,6 +219,7 @@ typedef NS_ENUM(NSUInteger, FSCalendarOrientation) {
     collectionView.clipsToBounds = YES;
     [collectionView registerClass:[FSCalendarCell class] forCellWithReuseIdentifier:FSCalendarDefaultCellReuseIdentifier];
     [collectionView registerClass:[FSCalendarBlankCell class] forCellWithReuseIdentifier:FSCalendarBlankCellReuseIdentifier];
+    [collectionView registerClass:[FSCalendarSeparatorFooter class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"footer"];
     [collectionView registerClass:[FSCalendarStickyHeader class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"header"];
     [collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"placeholderHeader"];
     [daysContainer addSubview:collectionView];
@@ -433,6 +435,12 @@ typedef NS_ENUM(NSUInteger, FSCalendarOrientation) {
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
+    if ([kind isEqualToString:UICollectionElementKindSectionFooter]) {
+        FSCalendarSeparatorFooter *footer = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"footer" forIndexPath:indexPath];
+        footer.calendar = self;
+        [footer setNeedsLayout];
+        return footer;
+    }
     if (self.floatingMode) {
         if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
             FSCalendarStickyHeader *stickyHeader = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"header" forIndexPath:indexPath];
