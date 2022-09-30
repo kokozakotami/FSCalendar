@@ -50,10 +50,6 @@
     _bottomBorder.frame = CGRectMake(_calendar.appearance.bottomSeparatorOffsetX, 0, _contentView.fs_width - _calendar.appearance.bottomSeparatorOffsetX, 1.0);
 
     CGPoint titleHeaderOffset = self.calendar.appearance.headerTitleOffset;
-    _titleLabel.frame = CGRectMake(titleHeaderOffset.x,
-                                   titleHeaderOffset.y+_bottomBorder.fs_bottom-titleHeight-weekdayMargin,
-                                   titleWidth,
-                                   titleHeight);
 }
 
 #pragma mark - Properties
@@ -62,7 +58,6 @@
 {
     if (![_calendar isEqual:calendar]) {
         _calendar = calendar;
-        _weekdayView.calendar = calendar;
         [self configureAppearance];
     }
 }
@@ -72,7 +67,6 @@
 - (void)configureAppearance
 {
     _bottomBorder.backgroundColor = self.calendar.appearance.footerSeparatorColor;
-    [self.weekdayView configureAppearance];
 }
 
 @end
