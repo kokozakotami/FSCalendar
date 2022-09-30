@@ -226,7 +226,7 @@
             for (int i = 0; i < self.numberOfSections; i++) {
                 NSInteger rowCount = [self.calendar.calculator numberOfRowsInSection:i];
                 self.sectionRowCounts[i] = rowCount;
-                CGFloat sectionHeight = self.headerReferenceSize.height + 1;
+                CGFloat sectionHeight = self.headerReferenceSize.height + 10;
                 for (int j = 0; j < rowCount; j++) {
                     sectionHeight += self.heights[j];
                 }
@@ -385,6 +385,10 @@
             NSInteger endRow = (section == endSection) ? endRowIndex : self.sectionRowCounts[section]-1;
             UICollectionViewLayoutAttributes *headerAttributes = [self layoutAttributesForSupplementaryViewOfKind:UICollectionElementKindSectionHeader atIndexPath:[NSIndexPath indexPathForItem:0 inSection:section]];
             [layoutAttributes addObject:headerAttributes];
+            
+            UICollectionViewLayoutAttributes *footerAttributes = [self layoutAttributesForSupplementaryViewOfKind:UICollectionElementKindSectionFooter atIndexPath:[NSIndexPath indexPathForItem:0 inSection:section]];
+            [layoutAttributes addObject:footerAttributes];
+            
             for (NSInteger row = startRow; row <= endRow; row++) {
                 for (NSInteger column = 0; column < 7; column++) {
                     NSInteger item = row * 7 + column;
@@ -463,7 +467,7 @@
         UICollectionViewLayoutAttributes *attributes = self.footerAttributes[indexPath];
         if (!attributes) {
             attributes = [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:UICollectionElementKindSectionFooter withIndexPath:indexPath];
-            attributes.frame = CGRectMake(0, self.sectionBottoms[indexPath.section], self.collectionView.fs_width, 1);
+            attributes.frame = CGRectMake(0, self.sectionBottoms[indexPath.section] - 1, self.collectionView.fs_width, 1);
             self.footerAttributes[indexPath] = attributes;
         }
         return attributes;
