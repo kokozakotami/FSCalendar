@@ -226,7 +226,7 @@
             for (int i = 0; i < self.numberOfSections; i++) {
                 NSInteger rowCount = [self.calendar.calculator numberOfRowsInSection:i];
                 self.sectionRowCounts[i] = rowCount;
-                CGFloat sectionHeight = self.headerReferenceSize.height;
+                CGFloat sectionHeight = self.headerReferenceSize.height + 1;
                 for (int j = 0; j < rowCount; j++) {
                     sectionHeight += self.heights[j];
                 }
