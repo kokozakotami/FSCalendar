@@ -40,6 +40,7 @@
 
 @property (strong, nonatomic) NSMutableDictionary<NSIndexPath *, UICollectionViewLayoutAttributes *> *itemAttributes;
 @property (strong, nonatomic) NSMutableDictionary<NSIndexPath *, UICollectionViewLayoutAttributes *> *headerAttributes;
+@property (strong, nonatomic) NSMutableDictionary<NSIndexPath *, UICollectionViewLayoutAttributes *> *footerAttributes;
 @property (strong, nonatomic) NSMutableDictionary<NSIndexPath *, UICollectionViewLayoutAttributes *> *rowSeparatorAttributes;
 
 - (void)didReceiveNotifications:(NSNotification *)notification;
@@ -69,6 +70,7 @@
         
         self.itemAttributes = NSMutableDictionary.dictionary;
         self.headerAttributes = NSMutableDictionary.dictionary;
+        self.footerAttributes = NSMutableDictionary.dictionary;
         self.rowSeparatorAttributes = NSMutableDictionary.dictionary;
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveNotifications:) name:UIDeviceOrientationDidChangeNotification object:nil];
@@ -105,6 +107,7 @@
     
     [self.itemAttributes removeAllObjects];
     [self.headerAttributes removeAllObjects];
+    [self.footerAttributes removeAllObjects];
     [self.rowSeparatorAttributes removeAllObjects];
     
     self.headerReferenceSize = ({
@@ -453,6 +456,15 @@
             attributes = [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:UICollectionElementKindSectionHeader withIndexPath:indexPath];
             attributes.frame = CGRectMake(0, self.sectionTops[indexPath.section], self.collectionView.fs_width, self.headerReferenceSize.height);
             self.headerAttributes[indexPath] = attributes;
+        }
+        return attributes;
+    }
+    if ([elementKind isEqualToString:UICollectionElementKindSectionFooter]) {
+        UICollectionViewLayoutAttributes *attributes = self.footerAttributes[indexPath];
+        if (!attributes) {
+            attributes = [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:UICollectionElementKindSectionFooter withIndexPath:indexPath];
+            attributes.frame = CGRectMake(0, self.sectionBottoms[indexPath.section], self.collectionView.fs_width, 1);
+            self.footerAttributes[indexPath] = attributes;
         }
         return attributes;
     }
