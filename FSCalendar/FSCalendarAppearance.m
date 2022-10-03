@@ -85,10 +85,10 @@
     return self;
 }
 
-- (void)setBottomSeparatorOffsetX:(CGFloat)bottomSeparatorOffsetX
+- (void)setFooterSeparatorOffsetX:(CGFloat)footerSeparatorOffsetX
 {
-    if (_bottomSeparatorOffsetX != bottomSeparatorOffsetX) {
-        _bottomSeparatorOffsetX = bottomSeparatorOffsetX;
+    if (_footerSeparatorOffsetX != footerSeparatorOffsetX) {
+        _footerSeparatorOffsetX = footerSeparatorOffsetX;
         [self.calendar configureAppearance];
     }
 }

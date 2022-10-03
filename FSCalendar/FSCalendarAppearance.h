@@ -44,7 +44,7 @@ typedef NS_OPTIONS(NSUInteger, FSCalendarCaseOptions) {
  */
 @interface FSCalendarAppearance : NSObject
 
-@property (assign, nonatomic) CGFloat  bottomSeparatorOffsetX;
+@property (assign, nonatomic) CGFloat  footerSeparatorOffsetX;
 
 /**
  * The font of the day text.

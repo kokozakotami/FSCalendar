@@ -47,7 +47,7 @@
     
     _contentView.frame = self.bounds;
     
-    _bottomBorder.frame = CGRectMake(_calendar.appearance.bottomSeparatorOffsetX, 0, _contentView.fs_width - _calendar.appearance.bottomSeparatorOffsetX, 1.0);
+    _bottomBorder.frame = CGRectMake(_calendar.appearance.footerSeparatorOffsetX, 0, _contentView.fs_width - _calendar.appearance.footerSeparatorOffsetX, 1.0);
 
     CGPoint titleHeaderOffset = self.calendar.appearance.headerTitleOffset;
 }
